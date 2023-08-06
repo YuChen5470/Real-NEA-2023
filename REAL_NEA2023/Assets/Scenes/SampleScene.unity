@@ -669,6 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  sensitivity: 3
 --- !u!114 &573376778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,6 +682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef500cb379966734090755fdca56a6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 808699975}
 --- !u!54 &573376779
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -803,7 +805,7 @@ GameObject:
   - component: {fileID: 808699975}
   - component: {fileID: 808699974}
   m_Layer: 0
-  m_Name: Camera[gun]
+  m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

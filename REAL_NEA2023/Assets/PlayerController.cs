@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour{
 
    [SerializeField] //used to mark private fields are serialisable so that unity can load these values, basically public, but not actually public 
    private float speed = 5f; // f is for setting numbers as a float, it must have the "f"
+   [SerializeField]
+   private float sensitivity = 15f;
 
    private PlayerMotor motor;
 
@@ -30,6 +32,27 @@ public class PlayerController : MonoBehaviour{
       //Applying the movement
 
       motor.Move(_velocity);
+
+      //calc rotation as a 3d vector this is for turning the players POV
+      float _yRot = Input.GetAxisRaw("Mouse X"); //takes from input manager
+
+      Vector3 _rotation = new Vector3 (0f, _yRot, 0f) * sensitivity;
+
+      // Apply rotation
+      motor.Rotate(_rotation);  // passing in _rotation into the rotate function which is a method called from the class called motor (private PlayerMotor motor)
+
+
+      //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+      //calc camera rotation as a 3d vector this is for turning the players POV
+      float _xRot = Input.GetAxisRaw("Mouse Y"); //takes from input manager
+
+      Vector3 _cameraRotation = new Vector3 (_xRot, 0f, 0f) * sensitivity;
+
+
+      // Apply camera rotation
+      motor.RotateCamera(_cameraRotation);
 
 
    }
