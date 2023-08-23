@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour{
    private float speed = 5f; // f is for setting numbers as a float, it must have the "f"
    [SerializeField]
    private float sensitivity = 15f;
+   [SerializeField]
+   private float jumpForce = 2f;
+   
 
    private PlayerMotor motor;
 
@@ -53,6 +56,16 @@ public class PlayerController : MonoBehaviour{
 
       // Apply camera rotation
       motor.RotateCamera(_cameraRotation);
+
+      // Calc jumping stuff 
+      Vector3 _jumpForce = Vector3.zero;
+
+      
+      if (Input.GetButton("Jump")){
+            _jumpForce = Vector3.up * jumpForce;   //Vector3.up is the same as going up in the coordinates 0,1,0 
+      }
+      // Applying jumping mechanics into player
+      motor.ApplyJump(_jumpForce);
 
 
    }

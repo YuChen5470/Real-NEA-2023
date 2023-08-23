@@ -9,13 +9,17 @@ public class PlayerMotor : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
     private Vector3 cameraRotation = Vector3.zero;
-    
-
+    private Vector3 jumpForce = Vector3.zero;
+    private bool isGrounded;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] LayerMask ground;
     private Rigidbody rb;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody>(); //getting component RigidBody and setting as rb
+
     }
     
     // Takes a movement vector 
@@ -38,6 +42,11 @@ public class PlayerMotor : MonoBehaviour
         cameraRotation = _cameraRotation;
 
     }
+    // Gets a force vector for our jumps
+    public void ApplyJump (Vector3 _jumpForce){
+        
+        jumpForce = _jumpForce;
+    }
 
     // Run every physics iteration like movement rotation etc
     void FixedUpdate()
@@ -53,6 +62,12 @@ public class PlayerMotor : MonoBehaviour
         if (velocity != Vector3.zero)
         {
             rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+        }
+
+        isGrounded = Physics.CheckSphere(groundCheck.position, .1f, ground );
+
+        if (jumpForce != Vector3.zero && isGrounded){
+            rb.AddForce(jumpForce, ForceMode.Impulse);
         }
     }
 
