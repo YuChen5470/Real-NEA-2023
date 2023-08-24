@@ -66,7 +66,8 @@ public class PlayerController : MonoBehaviour{
       }
       // Applying jumping mechanics into player
       motor.ApplyJump(_jumpForce);
-
-
+      //locking cursor into the middle
+      Cursor.visible = false;
+      Cursor.lockState = CursorLockMode.Locked;
    }
 }
