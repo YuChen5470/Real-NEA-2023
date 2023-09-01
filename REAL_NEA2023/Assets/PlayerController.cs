@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour{
    [SerializeField] //used to mark private fields are serialisable so that unity can load these values, basically public, but not actually public 
    private float speed = 5f; // f is for setting numbers as a float, it must have the "f"
  
-   public float sensitivity = 15f;
-   
+   public float sensitivity = 13f;
+
    [SerializeField]
 
    private float jumpForce = 2f;

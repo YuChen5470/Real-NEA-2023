@@ -15,10 +15,27 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField] LayerMask ground;
     private Rigidbody rb;
 
+    public float walkSpeed = 4f;
+    public float sprintSpeed = 10f;
+    public float speed;
+
+
+    /*
+
+    [Header("Crouching")]
+    public float crouchYscale;
+    public float crouchSpeed = 2f;
+    private float startYscale;  
+
+
+    put this in start()
+    startYscale = transform.localScale.y;
+    */
 
     void Start()
     {
         rb = GetComponent<Rigidbody>(); //getting component RigidBody and setting as rb
+
 
     }
     
@@ -57,7 +74,7 @@ public class PlayerMotor : MonoBehaviour
 
     //perform movement based on velocity variable
 
-    void PerformMovement()
+    void PerformMovement()      //includes walking, sprinting and crouching movements
      {
         if (velocity != Vector3.zero)
         {
@@ -69,6 +86,16 @@ public class PlayerMotor : MonoBehaviour
         if (jumpForce != Vector3.zero && isGrounded){
             rb.AddForce(jumpForce, ForceMode.Impulse);
         }
+        //sprinting
+        speed = walkSpeed;
+        if (Input.GetKey("left shift") && isGrounded)
+        {
+            speed = sprintSpeed;
+        }
+        Vector3 inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+        Vector3 desiredVelocity = transform.TransformDirection(inputDirection) * speed;     // calculates the velocity based off input, leftshift or just W key
+        rb.velocity = new Vector3(desiredVelocity.x, rb.velocity.y, desiredVelocity.z);    //applys the movement to rb
+
     }
 
     //perform rotation 
