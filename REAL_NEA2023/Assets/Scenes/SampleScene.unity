@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9d0cd0e23c8ec4c9e7bbbd4ad77e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   sensitivity: 13
   jumpForce: 2
 --- !u!114 &573376778
@@ -400,6 +400,9 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 8
+  walkSpeed: 3
+  sprintSpeed: 10
+  speed: 0
 --- !u!54 &573376779
 Rigidbody:
   m_ObjectHideFlags: 0
