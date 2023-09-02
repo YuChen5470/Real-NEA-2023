@@ -20,6 +20,15 @@ public class PlayerMotor : MonoBehaviour
     public float speed;
 
 
+    [Header("movement fixing")]
+    public PhysicMaterial airPhysicsMaterial;
+    public float airControlSpeed = 5f;
+    public PlayerController playerController;
+    public float inputHorizontal;
+    public float inputVertical;
+    public float moveSpeed;
+    public float bunnyHopMultiplier = 3f;
+
     /*
 
     [Header("Crouching")]
@@ -66,6 +75,13 @@ public class PlayerMotor : MonoBehaviour
     }
 
     // Run every physics iteration like movement rotation etc
+
+    void Update()
+    {
+        float inputHorizontal = playerController._xMov;
+        float inputVertical = playerController._zMov;
+        float moveSpeed = playerController.speed;
+    }
     void FixedUpdate()
     {
         PerformMovement();
@@ -86,6 +102,15 @@ public class PlayerMotor : MonoBehaviour
         if (jumpForce != Vector3.zero && isGrounded){
             rb.AddForce(jumpForce, ForceMode.Impulse);
         }
+        else 
+        {
+            if (Input.GetButtonDown("Jump") && inputVertical > 0)
+            {
+                Vector3 forwardForce = transform.forward * moveSpeed * bunnyHopMultiplier;
+                rb.AddForce(forwardForce, ForceMode.Impulse);
+            }
+        }
+
         //sprinting
         speed = walkSpeed;
         if (Input.GetKey("left shift") && isGrounded)

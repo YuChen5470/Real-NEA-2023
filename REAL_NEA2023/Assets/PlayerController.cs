@@ -4,8 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMotor))]  //adds PlayerMotor which adds RigidBody
 public class PlayerController : MonoBehaviour{
 
-   [SerializeField] //used to mark private fields are serialisable so that unity can load these values, basically public, but not actually public 
-   private float speed = 5f; // f is for setting numbers as a float, it must have the "f"
+   // [SerializeField] //used to mark private fields are serialisable so that unity can load these values, basically public, but not actually public 
+   public float speed = 3f; // f is for setting numbers as a float, it must have the "f"
  
    public float sensitivity = 13f;
 
@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour{
    
 
    private PlayerMotor motor;
+   public float _xMov;
+   public float _zMov;
 
    void Start ()
    {
@@ -68,6 +70,9 @@ public class PlayerController : MonoBehaviour{
       }
       // Applying jumping mechanics into player
       motor.ApplyJump(_jumpForce);
+
+
+
       //locking cursor into the middle
       Cursor.visible = false;
       Cursor.lockState = CursorLockMode.Locked;
