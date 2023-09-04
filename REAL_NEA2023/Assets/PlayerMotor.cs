@@ -17,17 +17,13 @@ public class PlayerMotor : MonoBehaviour
 
     public float walkSpeed = 4f;
     public float sprintSpeed = 10f;
-    public float speed;
+    public float currentSpeed;
 
 
     [Header("movement fixing")]
-    public PhysicMaterial airPhysicsMaterial;
-    public float airControlSpeed = 5f;
     public PlayerController playerController;
-    public float inputHorizontal;
-    public float inputVertical;
-    public float moveSpeed;
-    public float bunnyHopMultiplier = 3f;
+    public float horizontal;
+    public float vertical;
 
     /*
 
@@ -78,9 +74,9 @@ public class PlayerMotor : MonoBehaviour
 
     void Update()
     {
-        float inputHorizontal = playerController._xMov;
-        float inputVertical = playerController._zMov;
-        float moveSpeed = playerController.speed;
+        float horizontal = playerController._xMov;
+        float vertical = playerController._zMov;
+    
     }
     void FixedUpdate()
     {
@@ -99,26 +95,23 @@ public class PlayerMotor : MonoBehaviour
 
         isGrounded = Physics.CheckSphere(groundCheck.position, .1f, ground );
 
+        Vector3 moveDirection = new Vector3(horizontal, 0, vertical);
+        moveDirection.Normalize();
+
+        rb.velocity = new Vector3(moveDirection.x * currentSpeed, rb.velocity.y, moveDirection.z * currentSpeed);
+        
         if (jumpForce != Vector3.zero && isGrounded){
             rb.AddForce(jumpForce, ForceMode.Impulse);
         }
-        else 
-        {
-            if (Input.GetButtonDown("Jump") && inputVertical > 0)
-            {
-                Vector3 forwardForce = transform.forward * moveSpeed * bunnyHopMultiplier;
-                rb.AddForce(forwardForce, ForceMode.Impulse);
-            }
-        }
 
         //sprinting
-        speed = walkSpeed;
-        if (Input.GetKey("left shift") && isGrounded)
+        currentSpeed = walkSpeed;
+        if (Input.GetKey("left shift"))
         {
-            speed = sprintSpeed;
+            currentSpeed = sprintSpeed;
         }
         Vector3 inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-        Vector3 desiredVelocity = transform.TransformDirection(inputDirection) * speed;     // calculates the velocity based off input, leftshift or just W key
+        Vector3 desiredVelocity = transform.TransformDirection(inputDirection) * currentSpeed;     // calculates the velocity based off input, leftshift or just W key
         rb.velocity = new Vector3(desiredVelocity.x, rb.velocity.y, desiredVelocity.z);    //applys the movement to rb
 
     }
