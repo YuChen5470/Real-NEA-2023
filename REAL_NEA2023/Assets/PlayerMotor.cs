@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]  // takes component rigidbody as it is needed
@@ -35,7 +35,7 @@ public class PlayerMotor : MonoBehaviour
 
     put this in start()
     startYscale = transform.localScale.y;
-    */
+
 
     void Start()
     {
@@ -52,6 +52,7 @@ public class PlayerMotor : MonoBehaviour
     }
 
     // Takes a rotation vector
+    /*
     public void Rotate (Vector3 _rotation)
     {
         rotation = _rotation;
@@ -59,11 +60,12 @@ public class PlayerMotor : MonoBehaviour
     }
 
     // Takes a rotation vector for the camera
-     public void RotateCamera (Vector3 _cameraRotation)
+    public void RotateCamera (Vector3 _cameraRotation)
     {
         cameraRotation = _cameraRotation;
 
     }
+    
     // Gets a force vector for our jumps
     public void ApplyJump (Vector3 _jumpForce){
         
@@ -81,7 +83,7 @@ public class PlayerMotor : MonoBehaviour
     void FixedUpdate()
     {
         PerformMovement();
-        PerformRotation();
+        //PerformRotation();
     }
 
     //perform movement based on velocity variable
@@ -115,7 +117,7 @@ public class PlayerMotor : MonoBehaviour
         rb.velocity = new Vector3(desiredVelocity.x, rb.velocity.y, desiredVelocity.z);    //applys the movement to rb
 
     }
-
+    /*
     //perform rotation 
     // Quaternion is some complicated thing just need it for rotation
     void PerformRotation()
@@ -128,3 +130,4 @@ public class PlayerMotor : MonoBehaviour
     }
 
 }
+*/

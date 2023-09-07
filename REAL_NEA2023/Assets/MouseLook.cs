@@ -4,29 +4,37 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {   
-    public float mouseSensitivity = 500f;
-    public Transform playerBody;
+    public float sensX;
+    public float sensY;
 
-    float xRotation = 0f;
-    void Start()
+    public Transform orientation;
+
+    float xRotation;
+    float yRotation;
+    private void Start()
     {
-
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxisRaw("Mouse X") * sensX * Time.deltaTime;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * sensY * Time.deltaTime;
 
+        yRotation += mouseX;
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -99f,99f);
+        
+        xRotation = Mathf.Clamp(xRotation, -90f,90f);
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mouseX);
+        //rotate camera and rotation
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        orientation.Rotate(Vector3.up * mouseX);
 
 
 
         //askjasdjksbdahbasbjkabdjabsdjkbdkjkjsad
     }
 }
+ 
