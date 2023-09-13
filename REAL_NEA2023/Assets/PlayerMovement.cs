@@ -9,10 +9,13 @@ public class PlayerMovement : MonoBehaviour
     public float sprintSpeed =5.0f;
     public float currentSpeed;
     public float groundDrag;
+
+    private bool isSprinting = false;
     
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode sprintKey = KeyCode.LeftShift;
 
     [Header("Ground Check")]
     public LayerMask ground;
@@ -27,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform orientation;
 
+    [Header("Inputs")]
     float horizontalInput;
     float verticalInput;
 
@@ -59,6 +63,10 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse); // adding force
             jumpCount++;
         }
+
+        if (Input.GetKeyDown(sprintKey)){
+            isSprinting = !isSprinting;
+        }
         
         //kasndkjadkjandkanskdsa
 
@@ -90,7 +98,8 @@ public class PlayerMovement : MonoBehaviour
 
         // calc movement direction
     
-        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;  //checks if leftshift is pressed, compacted if statement, left side is if true right side is if false
+        //float currentSpeed = Input.GetKe/y(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;  //checks if leftshift is pressed, compacted if statement, left side is if true right side is if false
+        float currentSpeed = isSprinting ? sprintSpeed : moveSpeed;
 
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
