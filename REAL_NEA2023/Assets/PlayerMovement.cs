@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Gravity")]
     public float gravityStrength = -9.18f;
+
     [Header("Movement")] //just headers so i can be able to seperate better
     public float moveSpeed;
     public float sprintSpeed =5.0f;
@@ -146,9 +147,9 @@ private bool isCrouching = false;
     }
 
     private void Crouch()
-{
+    {
     
-    moveSpeed = 7;
+    moveSpeed = 7; 
     if (isCrouching)
     {
         transform.localScale = 0.5f *Vector3.up +  Vector3.right + Vector3.forward; //iteration 2
@@ -158,7 +159,7 @@ private bool isCrouching = false;
     {
         transform.localScale = Vector3.one;
     }
-    isSprinting = false;
-}
+    isSprinting = false; //making sure players cannot sprint while crouching
+    }
     
 }
