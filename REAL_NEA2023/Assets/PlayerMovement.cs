@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Gravity")]
+    public float gravityStrength = -9.18f;
     [Header("Movement")] //just headers so i can be able to seperate better
     public float moveSpeed;
     public float sprintSpeed =5.0f;
@@ -28,6 +30,14 @@ public class PlayerMovement : MonoBehaviour
     public int jumpCount;
     public int maxJumps = 2;
 
+    [Header("Crouching")]
+    public KeyCode crouchKey = KeyCode.LeftControl;
+
+    public float crouchSpeed = 2f;
+
+
+private bool isCrouching = false;
+
     public Transform orientation;
 
     [Header("Inputs")]
@@ -43,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        rb.useGravity = false;
     }
 
     // Update is called once per frame
@@ -50,12 +61,13 @@ public class PlayerMovement : MonoBehaviour
     {
         //ground check
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, ground);
-
+        //resetting jumpcount when grounded
         if (isGrounded)
         {
             jumpCount = 0;
         }
 
+        //jumping
         if (Input.GetButtonDown("Jump") && (isGrounded || jumpCount < maxJumps - 1)) //checks if jump button is pressed, if yes and isGrounded = true and jump is less than maxJumps-1 then jumps
        //then adds 1 to the jump count to allow double jumping
         {
@@ -64,8 +76,16 @@ public class PlayerMovement : MonoBehaviour
             jumpCount++;
         }
 
+        //sprinting toggle
         if (Input.GetKeyDown(sprintKey)){
             isSprinting = !isSprinting;
+        }
+
+        //crouching toggle
+        if (Input.GetKeyDown(crouchKey))
+        {
+        isCrouching = !isCrouching;
+        Crouch();
         }
         
         //kasndkjadkjandkanskdsa
@@ -83,6 +103,8 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+        Vector3 gravity = new Vector3(0, gravityStrength, 0);
+        rb.AddForce(gravity, ForceMode.Force);
     }
 
     private void MyInput()
@@ -92,19 +114,22 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
     private void MovePlayer()
     {
 
         // calc movement direction
     
-        //float currentSpeed = Input.GetKe/y(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;  //checks if leftshift is pressed, compacted if statement, left side is if true right side is if false
-        float currentSpeed = isSprinting ? sprintSpeed : moveSpeed;
-
+        //float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;  //checks if leftshift is pressed, compacted if statement, left side is if true right side is if false
+        if (isCrouching)
+        {
+            currentSpeed = moveSpeed;
+        }else{
+            currentSpeed = isSprinting ? sprintSpeed : moveSpeed;
+        }
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         rb.AddForce(moveDirection.normalized * currentSpeed * 10f, ForceMode.Force);
-        Debug.Log(moveDirection);
+        
     }
 
 
@@ -119,5 +144,21 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
+
+    private void Crouch()
+{
+    
+    moveSpeed = 7;
+    if (isCrouching)
+    {
+        transform.localScale = 0.5f *Vector3.up +  Vector3.right + Vector3.forward; //iteration 2
+        moveSpeed = crouchSpeed; // sets speed to crouchspeed
+    }
+    else
+    {
+        transform.localScale = Vector3.one;
+    }
+    isSprinting = false;
+}
     
 }

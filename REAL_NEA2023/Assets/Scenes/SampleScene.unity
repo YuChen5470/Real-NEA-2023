@@ -2008,8 +2008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a64744c79f3c204894ead93ac9955af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 200
-  sensY: 200
+  sensX: 400
+  sensY: 400
   orientation: {fileID: 721283812}
 --- !u!1 &835853068
 GameObject:
@@ -3311,19 +3311,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93373ac881d28044382184c115c2af22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravityStrength: -9.18
   moveSpeed: 7
-  sprintSpeed: 20
-  currentSpeed: 7
+  sprintSpeed: 100
+  currentSpeed: 0
   groundDrag: 5
   jumpKey: 32
+  sprintKey: 304
   ground:
     serializedVersion: 2
     m_Bits: 8
   groundCheck: {fileID: 948337}
   groundCheckDistance: 0.1
-  jumpForce: 5
+  jumpForce: 4
   jumpCount: 0
   maxJumps: 2
+  crouchKey: 306
+  crouchSpeed: 4
   orientation: {fileID: 721283812}
 --- !u!54 &1207497643
 Rigidbody:
