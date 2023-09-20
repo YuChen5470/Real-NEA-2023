@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravityStrength = -9.18f;
 
     [Header("Movement")] //just headers so i can be able to seperate better
-    public float moveSpeed;
+    public float moveSpeed = 7f;
     public float sprintSpeed =5.0f;
     public float currentSpeed;
     public float groundDrag;
@@ -62,8 +62,8 @@ private bool isCrouching = false;
     {
         //ground check
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, ground);
-        //resetting jumpcount when grounded
-        if (isGrounded)
+        
+        if (isGrounded)//resetting jumpcount when grounded
         {
             jumpCount = 0;
         }
@@ -72,9 +72,8 @@ private bool isCrouching = false;
         if (Input.GetButtonDown("Jump") && (isGrounded || jumpCount < maxJumps - 1)) //checks if jump button is pressed, if yes and isGrounded = true and jump is less than maxJumps-1 then jumps
        //then adds 1 to the jump count to allow double jumping
         {
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset vertical velocity
             rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse); // adding force
-            jumpCount++;
+            jumpCount++; //+1 jump
         }
 
         //sprinting toggle
@@ -135,7 +134,7 @@ private bool isCrouching = false;
 
 
 
-    private void SpeedControl() // making sure speed doesnt go past x 
+    private void SpeedControl() // making sure speed doesnt go past  
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         
@@ -157,7 +156,7 @@ private bool isCrouching = false;
     }
     else
     {
-        transform.localScale = Vector3.one;
+        transform.localScale = Vector3.one; // returns character to normal size
     }
     isSprinting = false; //making sure players cannot sprint while crouching
     }

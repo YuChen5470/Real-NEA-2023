@@ -3323,7 +3323,7 @@ MonoBehaviour:
     m_Bits: 8
   groundCheck: {fileID: 948337}
   groundCheckDistance: 0.1
-  jumpForce: 4
+  jumpForce: 6
   jumpCount: 0
   maxJumps: 2
   crouchKey: 306
