@@ -2008,8 +2008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a64744c79f3c204894ead93ac9955af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 400
-  sensY: 400
+  sensX: 200
+  sensY: 200
   orientation: {fileID: 721283812}
 --- !u!1 &835853068
 GameObject:
@@ -6346,6 +6346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2119801480}
+  - component: {fileID: 2119801481}
   m_Layer: 6
   m_Name: StarterGunModel
   m_TagString: Untagged
@@ -6375,6 +6376,26 @@ Transform:
   m_Father: {fileID: 808699973}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2119801481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119801479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4564b42573c00614c9f16fcbe5d58f94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon:
+    name: Glock
+    damage: 10
+    range: 200
+  cam: {fileID: 808699975}
+  mask:
+    serializedVersion: 2
+    m_Bits: 2147483647
 --- !u!1001 &2123960447
 PrefabInstance:
   m_ObjectHideFlags: 0

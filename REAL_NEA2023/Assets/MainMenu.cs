@@ -7,8 +7,8 @@ public class MainMenu : MonoBehaviour
 {
     public void Quit()
     {
-        Debug.Log("Quit");
         Application.Quit();
+        Debug.Log("Quit");
     }
 
     public void Play()

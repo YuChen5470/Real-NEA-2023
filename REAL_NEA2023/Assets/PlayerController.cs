@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour{
    // [SerializeField] //used to mark private fields are serialisable so that unity can load these values, basically public, but not actually public 
    public float speed = 3f; // f is for setting numbers as a float, it must have the "f"
  
-   //public float sensitivity = 13f;
+   public float sensitivity = 13f;
 
    [SerializeField]
 
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour{
       //Applying the movement
 
       motor.Move(_velocity);
-      /*
+
       //calc rotation as a 3d vector this is for turning the players POV
       float _yRot = Input.GetAxisRaw("Mouse X"); //takes from input manager
 
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour{
 
       // Apply camera rotation
       motor.RotateCamera(_cameraRotation);
-      
+
       // Calc jumping stuff 
       Vector3 _jumpForce = Vector3.zero;
 
@@ -68,10 +68,14 @@ public class PlayerController : MonoBehaviour{
       if (Input.GetButton("Jump")){
             _jumpForce = Vector3.up * jumpForce;   //Vector3.up is the same as going up in the coordinates 0,1,0 
       }
+
+      
       // Applying jumping mechanics into player
       motor.ApplyJump(_jumpForce);
 
-
+      //locking cursor into the middle
+      Cursor.visible = false;
+      Cursor.lockState = CursorLockMode.Locked;
    }
 }
 */
