@@ -33,8 +33,11 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Crouching")]
     public KeyCode crouchKey = KeyCode.LeftControl;
+
     public float crouchSpeed = 2f;
-    private bool isCrouching = false;
+
+
+private bool isCrouching = false;
 
     public Transform orientation;
 
@@ -84,7 +87,8 @@ public class PlayerMovement : MonoBehaviour
         isCrouching = !isCrouching;
         Crouch();
         }
-    
+        
+        //kasndkjadkjandkanskdsa
 
         MyInput();
         SpeedControl();

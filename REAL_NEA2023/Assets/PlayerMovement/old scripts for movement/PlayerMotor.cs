@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]  // takes component rigidbody as it is needed
@@ -25,7 +25,7 @@ public class PlayerMotor : MonoBehaviour
     public float horizontal;
     public float vertical;
 
-    
+    /*
 
     [Header("Crouching")]
     public float crouchYscale;
@@ -52,7 +52,7 @@ public class PlayerMotor : MonoBehaviour
     }
 
     // Takes a rotation vector
-    
+    /*
     public void Rotate (Vector3 _rotation)
     {
         rotation = _rotation;
@@ -86,9 +86,7 @@ public class PlayerMotor : MonoBehaviour
         //PerformRotation();
     }
 
-    //perform movement based on velocity variable 
-    && isGrounded
-     isGrounded = Physics.CheckSphere(groundCheck.position, .1f, ground );
+    //perform movement based on velocity variable
 
     void PerformMovement()      //includes walking, sprinting and crouching movements
      {
@@ -97,13 +95,14 @@ public class PlayerMotor : MonoBehaviour
             rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
         }
 
+        isGrounded = Physics.CheckSphere(groundCheck.position, .1f, ground );
 
         Vector3 moveDirection = new Vector3(horizontal, 0, vertical);
         moveDirection.Normalize();
 
         rb.velocity = new Vector3(moveDirection.x * currentSpeed, rb.velocity.y, moveDirection.z * currentSpeed);
         
-        if (jumpForce != Vector3.zero){
+        if (jumpForce != Vector3.zero && isGrounded){
             rb.AddForce(jumpForce, ForceMode.Impulse);
         }
 
@@ -118,7 +117,7 @@ public class PlayerMotor : MonoBehaviour
         rb.velocity = new Vector3(desiredVelocity.x, rb.velocity.y, desiredVelocity.z);    //applys the movement to rb
 
     }
-    
+    /*
     //perform rotation 
     // Quaternion is some complicated thing just need it for rotation
     void PerformRotation()
@@ -130,12 +129,5 @@ public class PlayerMotor : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //ground check
-        RaycastHit hit;
-        Vector3 raycastOrigin = groundCheck.position;
-        isGrounded = Physics.Raycast(raycastOrigin, Vector3.down, out hit, groundCheckDistance, ground);
-    }
-
-
+}
+*/
