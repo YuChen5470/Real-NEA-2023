@@ -129,7 +129,6 @@ private bool isCrouching = false;
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         rb.AddForce(moveDirection.normalized * currentSpeed * 10f, ForceMode.Force);
-        
     }
 
 
