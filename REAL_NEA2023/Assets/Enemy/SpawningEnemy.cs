@@ -7,8 +7,8 @@ public class SpawningEnemy : MonoBehaviour
     // Start is called before the first frame update
     public GameObject enemyPrefab;
     public float spawnHeight = 20f;
-    public int minEnemies = 5;
-    public int maxEnemies = 10;
+    public int minEnemies = 10;
+    public int maxEnemies = 40;
     public float delay = 0.5f;
     public float scatterRange  = 70f;
     

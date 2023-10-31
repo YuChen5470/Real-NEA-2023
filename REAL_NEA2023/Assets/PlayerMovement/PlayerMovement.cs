@@ -49,6 +49,10 @@ private bool isCrouching = false;
 
     Rigidbody rb;
 
+
+    [Header("Health and damage situations")]
+    public float health = 100f;
+
     // Start is called before the first frame update
     private void Start()
     {

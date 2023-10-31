@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,10 +14,17 @@ public class Enemy : MonoBehaviour
     public float groundCheckDistance;
     bool isGrounded;
 
+    [Header("Enemy attacking")]
+    public float attackRange =0.01f;
+    public float enemyDamage = 1f;
+    private PlayerHealth playerHealthScript;
+    private bool isAttacking = false;
+
     void Start()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
+        playerHealthScript = player.gameObject.GetComponent<PlayerHealth>();
     }
 
     void Update()
@@ -26,17 +34,31 @@ public class Enemy : MonoBehaviour
         if (isGrounded)
         {
             //iteration 1.
-            //Vector3 direction = (player.position - transform.position).normalized;
-            //transform.Translate(direction * speed * Time.deltaTime, player.position, player.position); 
+            //Vector3 direction = (player.position - enemy.position).normalized;
+            //enemy.Translate(direction * speed * Time.deltaTime, player.position, player.position); 
             //iteration 2.
             enemy.position = Vector3.MoveTowards(enemy.position,player.position, speed * Time.deltaTime);
         }
         
-        Vector3 playerFace = player.position - enemy.position;
-        Quaternion targetRotation = Quaternion.LookRotation(playerFace);
-        enemy.rotation = Quaternion.Slerp(enemy.rotation, targetRotation, speed * Time.deltaTime);   
-        
+        Vector3 position = player.position - enemy.position;
+        Quaternion targetRotation = Quaternion.LookRotation(position);
+        enemy.rotation = Quaternion.Slerp(enemy.rotation, targetRotation, speed * Time.deltaTime);  
+
+
+        if ( !isAttacking && Vector3.Distance(transform.position, player.position) <= attackRange)
+        {
+            StartCoroutine(EnemyAttack(2));
+        }
     }
+
+    IEnumerator EnemyAttack(float delay)
+    {
+        isAttacking = true;
+        playerHealthScript.TakeDamage(enemyDamage);
+        yield return new WaitForSeconds(delay);
+        isAttacking = false;
+    }
+
     public void TakeDamage (float amount)
     {
         health -= amount;
