@@ -3,10 +3,9 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-    public float health = 50f;
+    [Header("Transforms")]
     public Transform player;
     public Transform enemy;
-    public float speed = 7f;
 
     [Header("Ground Check")]
     public LayerMask ground;
@@ -15,10 +14,17 @@ public class Enemy : MonoBehaviour
     bool isGrounded;
 
     [Header("Enemy attacking")]
-    public float attackRange =0.01f;
-    public float enemyDamage = 1f;
     private PlayerHealth playerHealthScript;
     private bool isAttacking = false;
+
+
+    [Header("Enemy One")]
+    public float enemyScore = 5f;
+    public float enemyMoney = 10f;
+    public float attackRange =0.01f;
+    public float health = 50f;
+    public float enemyDamage = 1f;
+    public float speed = 7f;
 
     void Start()
     {
@@ -64,6 +70,8 @@ public class Enemy : MonoBehaviour
         health -= amount;
         if (health <= 0)
         {
+            playerHealthScript.AddScore(enemyScore);
+            playerHealthScript.AddMoney(enemyMoney);
             Destroy(gameObject);
         }
     }
