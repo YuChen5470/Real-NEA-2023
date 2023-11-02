@@ -70,8 +70,7 @@ public class Enemy : MonoBehaviour
         health -= amount;
         if (health <= 0)
         {
-            playerHealthScript.AddScore(enemyScore);
-            playerHealthScript.AddMoney(enemyMoney);
+            playerHealthScript.AddRewards(enemyScore, enemyMoney);
             Destroy(gameObject);
         }
     }

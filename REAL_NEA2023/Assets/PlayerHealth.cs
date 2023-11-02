@@ -20,13 +20,9 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void AddScore(float enemyScore)
+    public void AddRewards(float enemyScore, float enemyMoney)
     {
         score += enemyScore;
-    }
-
-    public void AddMoney(float enemyMoney)
-    {
         currency += enemyMoney;
     }
 }
