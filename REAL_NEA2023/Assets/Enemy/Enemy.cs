@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour
     public float enemyDamage = 1f;
     public float speed = 7f;
 
+    [Header("Changing enemyAmount")]
+    public SpawningEnemy spawnerScript;
     void Start()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -72,6 +74,7 @@ public class Enemy : MonoBehaviour
         {
             playerHealthScript.AddRewards(enemyScore, enemyMoney);
             Destroy(gameObject);
+            spawnerScript.amountCheck--;
         }
     }
 }
