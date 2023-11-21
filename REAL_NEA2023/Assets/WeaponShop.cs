@@ -14,6 +14,10 @@ public class WeaponShop : MonoBehaviour
     public KeyCode interactKey = KeyCode.E;
     public GameObject player;
     private GameObject shopInstance;
+
+    [Header("Shop Menus")]
+    public GameObject weaponShopMenu;
+    public GameObject crosshair;
     void Start()
     {
         SpawnWeaponShop();
@@ -23,6 +27,7 @@ public class WeaponShop : MonoBehaviour
     {
         if (Vector3.Distance(shopInstance.transform.position, player.transform.position) <= interactionRadius && Input.GetKeyDown(interactKey))
         {
+            showShopMenu();
             Debug.Log("testing opening shop");
         }
     }
@@ -34,6 +39,15 @@ public class WeaponShop : MonoBehaviour
 
         Vector3 spawnPosition = new Vector3(randomX, spawnHeight, randomZ); 
         shopInstance = Instantiate(weaponShop, spawnPosition, Quaternion.identity);
+    }
+
+    public void showShopMenu()
+    {
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        crosshair.SetActive(false);
+        weaponShopMenu.SetActive(true);
     }
 
 
