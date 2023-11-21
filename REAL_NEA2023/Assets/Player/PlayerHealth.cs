@@ -19,7 +19,6 @@ public class PlayerHealth : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     public void AddRewards(float enemyScore, float enemyMoney)
     {
         score += enemyScore;
@@ -27,3 +26,5 @@ public class PlayerHealth : MonoBehaviour
     }
 }
 
+
+//shop will be added here, due to the fact that the currency is stored here.
