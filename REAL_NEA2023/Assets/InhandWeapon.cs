@@ -17,6 +17,6 @@ public class InhandWeapon : MonoBehaviour
     }
     void Update()
     {
-        inhandWeaponText.text = "Currently Upgrading: " + _currentWeapon;
+        inhandWeaponText.text = "Currently Upgrading: " + _currentWeapon.transform.name;
     }
 }
