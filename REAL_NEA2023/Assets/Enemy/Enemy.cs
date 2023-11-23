@@ -56,6 +56,8 @@ public class Enemy : MonoBehaviour
         if ( !isAttacking && Vector3.Distance(transform.position, player.position) <= attackRange)
         {
             StartCoroutine(EnemyAttack(2));
+
+            // some new codde im trying
         }
     }
 
