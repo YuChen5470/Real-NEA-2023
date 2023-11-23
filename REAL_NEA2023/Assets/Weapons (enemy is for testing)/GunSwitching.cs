@@ -6,7 +6,7 @@ public class GunSwitching : MonoBehaviour
 {
     public GameObject[] weapons = new GameObject[2]; //sets an array of size 2 called weapons
     private int inhandWeapon = 0;
-
+    public GameObject currentWeapon;
     void Start()
     {
         SelectWeapon(inhandWeapon); // at the start, the user will always have the first weapon in hand.
@@ -39,6 +39,7 @@ public class GunSwitching : MonoBehaviour
         if (weapons[index] != null) //in any case where there is no weapon active,
         {
             weapons[index].SetActive(true);
+            currentWeapon = weapons[index];
         }
     } 
 }
