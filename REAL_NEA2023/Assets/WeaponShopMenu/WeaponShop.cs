@@ -10,7 +10,7 @@ public class WeaponShop : MonoBehaviour
     public float scatterRange = 100f;
 
     [Header("Interaction checks")]
-    public float interactionRadius = 10f; //if the distance between the shop's position and the player's current position is greater than 3, interaction is not permitted.
+    public float interactionRadius = 5f; //if the distance between the shop's position and the player's current position is greater than 3, interaction is not permitted.
     public KeyCode interactKey = KeyCode.E;
     public GameObject player;
     private GameObject shopInstance;
@@ -30,6 +30,7 @@ public class WeaponShop : MonoBehaviour
             showShopMenu();
             Debug.Log("testing opening shop");
         }
+        //Debug.Log(Vector3.Distance(shopInstance.transform.position, player.transform.position));
     }
 
     public void SpawnWeaponShop()
