@@ -1543,11 +1543,7 @@ MonoBehaviour:
   interactionRadius: 10
   interactKey: 101
   player: {fileID: 1207497640}
-<<<<<<< HEAD
-  weaponShopMenu: {fileID: 0}
-=======
   weaponShopMenu: {fileID: 1049899014}
->>>>>>> 5ddf730a3c307648891a9d5c99de30bdae79c332
   crosshair: {fileID: 1721734473}
 --- !u!4 &457294531
 Transform:
