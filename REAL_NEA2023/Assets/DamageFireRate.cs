@@ -31,15 +31,35 @@ public class DamageFireRate : MonoBehaviour
     {
         //check currency
 
-
         //upgrades the inhand weapon
-        Debug.Log(weaponToUpgrade.name);
         if (weaponToUpgrade.name == SlingShotOne.name)
         {
-           changeHolderScriptOne.timeBetweenShots -= 0.05f; 
+            if (changeHolderScriptOne.timeBetweenShots -0.05f >0) // validation, if delay-0.05 is greater than 0, allow to subtract
+            {
+                changeHolderScriptOne.timeBetweenShots -= 0.05f; 
+            }else{
+                Debug.Log("Unable to upgrade, you will have negative or no delay at all....");
+            }
+           
         }else{
-            changeHolderScriptTwo.timeBetweenShots -= 0.05f;
+            if (changeHolderScriptTwo.timeBetweenShots -0.05f >0)
+            {
+                changeHolderScriptTwo.timeBetweenShots -= 0.05f;
+            }else{
+                Debug.Log("Unable to upgrade, you will have negative or no delay at all....");
+            }
         }
         
+    }
+    public void UpgradeWeaponDamage()
+    {
+        //check currency
+
+        if (weaponToUpgrade.name == SlingShotOne.name)
+        {
+            changeHolderScriptOne.damage += 50f;
+        }else{
+            changeHolderScriptTwo.damage += 50f;
+        }
     }
 }

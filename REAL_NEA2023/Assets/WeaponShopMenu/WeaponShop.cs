@@ -51,6 +51,15 @@ public class WeaponShop : MonoBehaviour
         weaponShopMenu.SetActive(true);
     }
 
+    public void hideShopMenu()
+    {
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        crosshair.SetActive(true);
+        weaponShopMenu.SetActive(false);
+    }
+
 
     
 }
