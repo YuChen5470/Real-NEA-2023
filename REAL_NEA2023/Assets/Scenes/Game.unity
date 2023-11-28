@@ -3132,6 +3132,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92bef1a5cf6ae594f91fbabb0611c5ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunSwitching: {fileID: 808699977}
+  weaponToUpgrade: {fileID: 0}
+  SlingShotOne: {fileID: 1894737935}
+  SlingShotTwo: {fileID: 785437983}
+  changeHolderScriptOne: {fileID: 1894737937}
+  changeHolderScriptTwo: {fileID: 785437985}
 --- !u!1 &802811813
 GameObject:
   m_ObjectHideFlags: 0
