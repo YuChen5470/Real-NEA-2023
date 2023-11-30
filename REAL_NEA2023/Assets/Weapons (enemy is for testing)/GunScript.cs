@@ -12,7 +12,7 @@ public class GunScript : MonoBehaviour
     
 
     [Header("Gun Delay")]
-    public float timeBetweenShots = 0.2f;
+    public float timeBetweenShots;
     private float timeSinceLastShot;
 
     [Header("Bullet Count")]

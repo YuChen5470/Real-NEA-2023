@@ -34,17 +34,17 @@ public class DamageFireRate : MonoBehaviour
         //upgrades the inhand weapon
         if (weaponToUpgrade.name == SlingShotOne.name)
         {
-            if (changeHolderScriptOne.timeBetweenShots -0.05f >0) // validation, if delay-0.05 is greater than 0, allow to subtract
+            if (changeHolderScriptOne.timeBetweenShots -0.025f >=0.1f) // validation, if delay-0.05 is greater than 0, allow to subtract
             {
-                changeHolderScriptOne.timeBetweenShots -= 0.05f; 
+                changeHolderScriptOne.timeBetweenShots -= 0.025f; 
             }else{
                 Debug.Log("Unable to upgrade, you will have negative or no delay at all....");
             }
            
         }else{
-            if (changeHolderScriptTwo.timeBetweenShots -0.05f >0)
+            if (changeHolderScriptTwo.timeBetweenShots -0.025f >=0.1f)
             {
-                changeHolderScriptTwo.timeBetweenShots -= 0.05f;
+                changeHolderScriptTwo.timeBetweenShots -= 0.025f;
             }else{
                 Debug.Log("Unable to upgrade, you will have negative or no delay at all....");
             }
@@ -57,9 +57,9 @@ public class DamageFireRate : MonoBehaviour
 
         if (weaponToUpgrade.name == SlingShotOne.name)
         {
-            changeHolderScriptOne.damage += 50f;
+            changeHolderScriptOne.damage += 15f;
         }else{
-            changeHolderScriptTwo.damage += 50f;
+            changeHolderScriptTwo.damage += 20f;
         }
     }
 }

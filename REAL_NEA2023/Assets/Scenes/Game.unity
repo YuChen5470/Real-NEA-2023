@@ -3226,7 +3226,7 @@ MonoBehaviour:
   range: 1000
   reloadDuration: 5
   fpsCam: {fileID: 808699975}
-  timeBetweenShots: 0.5
+  timeBetweenShots: 1.5
   maxBullets: 10
   currentBullets: 0
   hitMarker: {fileID: 1507982725}
@@ -9260,7 +9260,7 @@ MonoBehaviour:
   range: 100
   reloadDuration: 2
   fpsCam: {fileID: 808699975}
-  timeBetweenShots: 0.2
+  timeBetweenShots: 0.85
   maxBullets: 25
   currentBullets: 0
   hitMarker: {fileID: 1507982725}
