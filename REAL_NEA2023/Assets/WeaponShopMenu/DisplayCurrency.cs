@@ -10,12 +10,9 @@ public class DisplayCurrency : MonoBehaviour
     public TextMeshProUGUI currencyText;
     private float _currency;
     // Update is called once per frame
-    void Start()
-    {
-        _currency = playerHealth.currency;
-    }
     void Update()
     {
+        _currency = playerHealth.currency;
         currencyText.text = "Currency: " + _currency.ToString();
     }
 }

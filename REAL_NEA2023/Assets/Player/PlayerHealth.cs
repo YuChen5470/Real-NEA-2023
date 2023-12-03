@@ -27,4 +27,3 @@ public class PlayerHealth : MonoBehaviour
 }
 
 
-//shop will be added here, due to the fact that the currency is stored here.
