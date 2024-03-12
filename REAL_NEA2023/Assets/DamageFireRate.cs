@@ -36,11 +36,11 @@ public class DamageFireRate : MonoBehaviour
     // Update is called once per frame
     public void UpgradeWeaponDelay()
     {
-        //check currency
+        //check currency    
         if (_currency - fireBuyAmount >= 0)
         {
             _currency -= fireBuyAmount;
-            fireBuyAmount += 500;
+            fireBuyAmount += 250;
             //upgrades the inhand weapon
             if (weaponToUpgrade.name == SlingShotOne.name)
             {
@@ -71,7 +71,7 @@ public class DamageFireRate : MonoBehaviour
         if (_currency - dmgBuyAmount >= 0)
         {  
             _currency -= dmgBuyAmount;
-            dmgBuyAmount += 1000;
+            dmgBuyAmount += 250;
             if (weaponToUpgrade.name == SlingShotOne.name)
             {
                 changeHolderScriptOne.damage += 15f;

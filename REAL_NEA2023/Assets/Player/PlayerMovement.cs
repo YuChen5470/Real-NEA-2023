@@ -35,7 +35,8 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode crouchKey = KeyCode.LeftControl;
 
     public float crouchSpeed = 2f;
-
+    [Header("Pausing game")]
+    private bool isPaused = false;
 
 private bool isCrouching = false;
 
@@ -99,6 +100,18 @@ private bool isCrouching = false;
             rb.drag = groundDrag;
         else
             rb.drag = 0;
+
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else{
+                PauseGame();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -160,5 +173,15 @@ private bool isCrouching = false;
     }
     isSprinting = false; //making sure players cannot sprint while crouching
     }
-    
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0f;
+        isPaused = true;
+    }    
+    private void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+    }
 }

@@ -60,6 +60,12 @@ public class WeaponShop : MonoBehaviour
         weaponShopMenu.SetActive(false);
     }
 
-
+// will have to change some parts to this code, will have to make it so that it decides which shop I am choosing. 
+// copy paste the SpawnWeaponShop and rename into SpawnDefenceShop for obvious reasons, instantiate and assign to a variable.
+// have another if statment in the update function that would keep track of both shops and their distance away from the user.
+// I may come across an error about the two shops being in the range and button pressed, may open the same shop and cause an error. 
+// shorten the distance between the player and each shop? CHANGED  IT TO 5, not sure if this is a viable solution to this problem 
+// if the error occurs I will add directional raycast that will hit one or the other shop, surely thatwill work I dont think I will need to do that.
+// the likelyhood of the two being in the exact same x,y,z, position is almost zero to none.
     
 }
