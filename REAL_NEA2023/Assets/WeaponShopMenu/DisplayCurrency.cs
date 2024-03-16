@@ -5,14 +5,13 @@ using TMPro;
 
 public class DisplayCurrency : MonoBehaviour
 {
-    public PlayerHealth playerHealth;
-
+    public DamageFireRate damageFireRate;
     public TextMeshProUGUI currencyText;
-    private float _currency;
+    private float currency;
     // Update is called once per frame
     void Update()
     {
-        _currency = playerHealth.currency;
-        currencyText.text = "Currency: " + _currency.ToString();
+        currency = damageFireRate._currency;
+        currencyText.text = "Currency: " + currency.ToString();
     }
 }

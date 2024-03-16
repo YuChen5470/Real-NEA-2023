@@ -23,13 +23,18 @@ public class DamageFireRate : MonoBehaviour
     public PlayerHealth playerHealth;
     public float fireBuyAmount = 500f;
     public float dmgBuyAmount = 500f;
-    private float _currency;
+    public float _currency;
     
     void Start()
     {
         weaponToUpgrade = gunSwitching.currentWeapon; //current weapon inhand
         GunScript changeHolderScriptOne = weaponToUpgrade.GetComponent<GunScript>(); //references the gun script inside the gameobject for slingshot 1
         GunScript changeHolderScriptTwo = weaponToUpgrade.GetComponent<GunScript>(); //references the gun script inside the gameobject for slingshot 2
+        _currency = playerHealth.currency;
+    }
+
+    void Update()
+    {
         _currency = playerHealth.currency;
     }
 
@@ -40,6 +45,7 @@ public class DamageFireRate : MonoBehaviour
         if (_currency - fireBuyAmount >= 0)
         {
             _currency -= fireBuyAmount;
+            playerHealth.currency -= fireBuyAmount;
             fireBuyAmount += 250;
             //upgrades the inhand weapon
             if (weaponToUpgrade.name == SlingShotOne.name)
@@ -71,6 +77,7 @@ public class DamageFireRate : MonoBehaviour
         if (_currency - dmgBuyAmount >= 0)
         {  
             _currency -= dmgBuyAmount;
+            playerHealth.currency -= dmgBuyAmount;
             dmgBuyAmount += 250;
             if (weaponToUpgrade.name == SlingShotOne.name)
             {
