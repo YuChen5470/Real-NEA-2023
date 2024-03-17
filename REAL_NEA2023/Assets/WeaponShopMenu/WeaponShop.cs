@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WeaponShop : MonoBehaviour
 {
+
+    public bool isPaused = false;
     [Header("Spawning weapon shop")]
     public GameObject weaponShop;
     public float spawnHeight = 10f;
@@ -69,6 +71,7 @@ public class WeaponShop : MonoBehaviour
         Cursor.visible = true;
         crosshair.SetActive(false);
         weaponShopMenu.SetActive(true);
+        isPaused = true;
     }
 
     public void hideWeaponMenu()
@@ -78,16 +81,7 @@ public class WeaponShop : MonoBehaviour
         Cursor.visible = false;
         crosshair.SetActive(true);
         weaponShopMenu.SetActive(false);
-        
-    }
-
-    public void hideDefenceMenu()
-    {
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        crosshair.SetActive(true);
-        defenceShopMenu.SetActive(false);
+        isPaused = false;
         
     }
 
@@ -98,7 +92,21 @@ public class WeaponShop : MonoBehaviour
         Cursor.visible = true;
         crosshair.SetActive(false);
         defenceShopMenu.SetActive(true);
+        isPaused = true;
     }
+
+    public void hideDefenceMenu()
+    {
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        crosshair.SetActive(true);
+        defenceShopMenu.SetActive(false);
+        isPaused = false;
+        
+    }
+
+   
 // will have to change some parts to this code, will have to make it so that it decides which shop I am choosing. 
 // copy paste the SpawnWeaponShop and rename into SpawnDefenceShop for obvious reasons, instantiate and assign to a variable.
 // have another if statment in the update function that would keep track of both shops and their distance away from the user.

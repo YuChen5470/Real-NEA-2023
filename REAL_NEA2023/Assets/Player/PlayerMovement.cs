@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float crouchSpeed = 2f;
     [Header("Pausing game")]
-    private bool isPaused = false;
+    public bool isPaused = false;
 
 private bool isCrouching = false;
 
