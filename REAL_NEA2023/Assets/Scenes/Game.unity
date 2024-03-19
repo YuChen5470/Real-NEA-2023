@@ -3680,7 +3680,7 @@ MonoBehaviour:
   range: 1000
   reloadDuration: 5
   fpsCam: {fileID: 808699975}
-  timeBetweenShots: 1.5
+  timeBetweenShots: 0.8
   maxBullets: 10
   currentBullets: 0
   hitMarker: {fileID: 1507982725}
@@ -6284,7 +6284,7 @@ MonoBehaviour:
   ptnsBuyAmount: 500
   pashpBuyAmount: 500
   isUnlocked: 0
-  maxHealth: 100
+  Reg_timer: 0
   PotRegen: 50
 --- !u!1 &1207497640
 GameObject:
@@ -6383,9 +6383,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ded4c403b08d6e48a4f210da2862a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generalDefence: {fileID: 1169474421}
   health: 100
   score: 0
   currency: 500
+  isUnlocked: 0
+  Reg_timer: 0
 --- !u!1 &1211106468
 GameObject:
   m_ObjectHideFlags: 0
@@ -11473,7 +11476,7 @@ MonoBehaviour:
   range: 100
   reloadDuration: 2
   fpsCam: {fileID: 808699975}
-  timeBetweenShots: 0.85
+  timeBetweenShots: 0.2
   maxBullets: 25
   currentBullets: 0
   hitMarker: {fileID: 1507982725}

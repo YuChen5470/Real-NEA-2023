@@ -15,10 +15,10 @@ public class GeneralDefence : MonoBehaviour
 
 
     [Header("PassiveHealing")]
-    public bool isUnlocked = false;
-    public float maxHealth = 100f;
-    private float healthReg = 100f;
-
+    public bool isUnlocked;
+    public float Reg_timer = 0;
+    
+   
 
     [Header("Potion stats")]
     public float PotRegen = 50f;
@@ -26,31 +26,13 @@ public class GeneralDefence : MonoBehaviour
     {
         _currency = playerHealth.currency;
         _playerHealth = playerHealth.health;
+        isUnlocked = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isUnlocked)
-        {
-            StartCoroutine(PassiveHealingReg());
-        }
-    }
-    // not sure why none of this works, LINES 34-52
-    private IEnumerator PassiveHealingReg()
-    {
-        yield return new WaitForSeconds(1f);
-        if (playerHealth.health < maxHealth)
-        {
-            playerHealth.health += 1;
-            playerHealth.health = Mathf.Clamp(playerHealth.health, 0f, maxHealth);
 
-
-        }
-        else
-        {
-            Debug.Log("Max health reached");
-        }
     }
 
     public void PurcahsePotions()
