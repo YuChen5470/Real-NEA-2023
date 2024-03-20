@@ -16,7 +16,11 @@ public class SpawningEnemy : MonoBehaviour
     [Header("Wave Mangement")]
     public int waveCount = 0;
     public int amountCheck;
-    
+
+    [Header("More Enemies")]
+    public GameObject enemyPrefabTwo; // big enemies
+    public GameObject enemyPrefabThree; // fast enemies
+    public GameObject spawnPrefab;
     void Start() 
     {
         amountCheck = 0;
@@ -44,10 +48,33 @@ public class SpawningEnemy : MonoBehaviour
 
                 Vector3 spawnPosition = new Vector3(randomX, spawnHeight, randomZ); //gets a random spawn position
                 Instantiate(enemyPrefab, spawnPosition, Quaternion.identity); // "spawns" the enemy into the scene.
-                yield return new WaitForSeconds(delay); //0.1 second delay
+             
             } 
+            if (waveCount >= 4)
+            {
+                float chooseAtRandom = Random.Range(0,100);
+
+                if (chooseAtRandom % 2 != 0)
+                {
+                    spawnPrefab = enemyPrefabTwo;
+                }else{
+                    spawnPrefab = enemyPrefabThree;
+                }
+
+                int enemyAmountTwo = Random.Range(0,3);
+                amountCheck += enemyAmountTwo;
+                for (int j=0; j < enemyAmountTwo; j++) 
+                {
+                    float randomXTwo = Random.Range(-scatterRange, scatterRange); //gets a random x position for the enemy to spawn
+                    float randomZTwo = Random.Range(-scatterRange, scatterRange);//gets a random z position for the enemy to spawn
+                    
+                    Vector3 spawnPositionTwo = new Vector3(randomXTwo, spawnHeight, randomZTwo); //gets a random spawn position
+                    Instantiate(spawnPrefab, spawnPositionTwo, Quaternion.identity); // "spawns" the enemy into the scene.
+                }
+            }
+        yield return new WaitForSeconds(delay); //0.1 second delay
+          
         }
-        
     }
 
 

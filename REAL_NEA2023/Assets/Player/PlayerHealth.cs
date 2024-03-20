@@ -16,13 +16,14 @@ public class PlayerHealth : MonoBehaviour
     public float currency = 0f;
 
     [Header("PassiveHealing")]
-    public bool isUnlocked;
+    public bool Unlocked;
     public float Reg_timer = 0;
     
 
     void Update()
     {
-        if (generalDefence.isUnlocked)
+        Unlocked = generalDefence.isUnlocked;
+        if (Unlocked)
         {
             PassiveHealthReg();
         }
