@@ -37,7 +37,8 @@ public class SpawningEnemy : MonoBehaviour
     IEnumerator SpawnEnemies(int x)
     {   
         if (x == 0)
-        {
+        {   
+            spawnPrefab = null;
             int enemyAmount = Random.Range(minEnemies,maxEnemies + 1);//random number of enemy/enemies
             amountCheck = enemyAmount;
             Debug.Log(amountCheck);
@@ -50,10 +51,9 @@ public class SpawningEnemy : MonoBehaviour
                 Instantiate(enemyPrefab, spawnPosition, Quaternion.identity); // "spawns" the enemy into the scene.
              
             } 
-            if (waveCount >= 4)
+            if (waveCount >= 0)
             {
-                float chooseAtRandom = Random.Range(0,100);
-
+                float chooseAtRandom = Random.Range(0,10);
                 if (chooseAtRandom % 2 != 0)
                 {
                     spawnPrefab = enemyPrefabTwo;
@@ -61,14 +61,14 @@ public class SpawningEnemy : MonoBehaviour
                     spawnPrefab = enemyPrefabThree;
                 }
 
-                int enemyAmountTwo = Random.Range(0,3);
+                int enemyAmountTwo = Random.Range(0,5);
                 amountCheck += enemyAmountTwo;
                 for (int j=0; j < enemyAmountTwo; j++) 
                 {
-                    float randomXTwo = Random.Range(-scatterRange, scatterRange); //gets a random x position for the enemy to spawn
-                    float randomZTwo = Random.Range(-scatterRange, scatterRange);//gets a random z position for the enemy to spawn
+                    float randomX = Random.Range(-scatterRange, scatterRange); //gets a random x position for the enemy to spawn
+                    float randomZ = Random.Range(-scatterRange, scatterRange); //gets a random z position for the enemy to spawn
                     
-                    Vector3 spawnPositionTwo = new Vector3(randomXTwo, spawnHeight, randomZTwo); //gets a random spawn position
+                    Vector3 spawnPositionTwo = new Vector3(randomX, spawnHeight, randomZ); //gets a random spawn position
                     Instantiate(spawnPrefab, spawnPositionTwo, Quaternion.identity); // "spawns" the enemy into the scene.
                 }
             }
