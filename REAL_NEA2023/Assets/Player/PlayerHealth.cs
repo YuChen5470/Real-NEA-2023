@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
 
@@ -18,6 +18,10 @@ public class PlayerHealth : MonoBehaviour
     [Header("PassiveHealing")]
     public bool Unlocked;
     public float Reg_timer = 0;
+
+
+    [Header("crosshair")]
+    public GameObject crosshair;
     
 
     void Update()
@@ -33,7 +37,10 @@ public class PlayerHealth : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            crosshair.SetActive(false);
+            SceneManager.LoadScene("Menu");
         }
     }
     public void AddRewards(float enemyScore, float enemyMoney)

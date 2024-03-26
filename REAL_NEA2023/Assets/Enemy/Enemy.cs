@@ -25,9 +25,12 @@ public class Enemy : MonoBehaviour
     public float health = 50f;
     public float enemyDamage = 1f;
     public float speed = 7f;
+    
 
     [Header("Changing enemyAmount")]
     public SpawningEnemy spawnerScript;
+
+
     void Start()
     {
         Rigidbody rb = GetComponent<Rigidbody>();

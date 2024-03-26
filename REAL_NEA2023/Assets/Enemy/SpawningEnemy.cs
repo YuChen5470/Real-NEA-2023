@@ -51,7 +51,7 @@ public class SpawningEnemy : MonoBehaviour
                 Instantiate(enemyPrefab, spawnPosition, Quaternion.identity); // "spawns" the enemy into the scene.
              
             } 
-            if (waveCount >= 0)
+            if (waveCount >= 4)
             {
                 float chooseAtRandom = Random.Range(0,10);
                 if (chooseAtRandom % 2 != 0)

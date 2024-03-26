@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -37,8 +38,10 @@ public class PlayerMovement : MonoBehaviour
     public float crouchSpeed = 2f;
     [Header("Pausing game")]
     public bool isPaused = false;
+    public GameObject pauseMenu;
+    public GameObject crosshair;
 
-private bool isCrouching = false;
+    private bool isCrouching = false;
 
     public Transform orientation;
 
@@ -57,6 +60,7 @@ private bool isCrouching = false;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         rb.useGravity = false;
+        pauseMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -107,9 +111,12 @@ private bool isCrouching = false;
             if (isPaused)
             {
                 ResumeGame();
+                CloseMenu();
             }
             else{
                 PauseGame();
+                OpenMenu();
+                
             }
         }
     }
@@ -183,5 +190,43 @@ private bool isCrouching = false;
     {
         Time.timeScale = 1f;
         isPaused = false;
+    }
+
+    private void OpenMenu()
+    {
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        crosshair.SetActive(false);
+        pauseMenu.SetActive(true);
+        
+    }
+
+    private void CloseMenu()
+    {
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        crosshair.SetActive(true);
+        pauseMenu.SetActive(false);
+    }
+
+    public void ResumeButton()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        crosshair.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        crosshair.SetActive(false);
+        SceneManager.LoadScene("Menu");
     }
 }

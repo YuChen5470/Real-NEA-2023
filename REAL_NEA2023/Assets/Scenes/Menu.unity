@@ -5103,11 +5103,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "The aim of the game is simple, shoot enemies and survive...\n\nThis game
-    contains an endless wave of enemy pigs that you must defeat in order to stay
-    alive for as long as possible, before they eventually snort you. You will be
-    timed as soon as the game commences and your record will be stored and processed.
-    \n\nLet's see if you are good enough to reach 1st on the leaderboard!"
+  m_text: Kill enemies to survive, get stronger as time passes and the more enemies
+    you kill, the higher score and more currency. Currency can be used to buy defensive
+    items or weapon upgrades. Defence shops (in purple) and Weapon shops (in orange).
+    The game only ends when you die or you decide to restart. Your score is recorded
+    and the highest scores get put on a leaderboard for everyone to see your glory.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
