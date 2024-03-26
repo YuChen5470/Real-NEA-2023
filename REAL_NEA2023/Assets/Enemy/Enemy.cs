@@ -51,8 +51,9 @@ public class Enemy : MonoBehaviour
             enemy.position = Vector3.MoveTowards(enemy.position,player.position, speed * Time.deltaTime);
         }
         
-        Vector3 position = player.position - enemy.position;
-        Quaternion targetRotation = Quaternion.LookRotation(position);
+        Vector3 positionX = player.position - enemy.position;
+        positionX.y = 0f;
+        Quaternion targetRotation = Quaternion.LookRotation(positionX);
         enemy.rotation = Quaternion.Slerp(enemy.rotation, targetRotation, speed * Time.deltaTime);  
 
 
