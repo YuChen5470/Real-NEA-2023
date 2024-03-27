@@ -9,65 +9,65 @@ public class PlayerMovement : MonoBehaviour
     public float gravityStrength = -9.18f;
 
     [Header("Movement")] //just headers so i can be able to seperate better
-    public float moveSpeed = 7f;
-    public float sprintSpeed =5.0f;
-    public float currentSpeed;
-    public float groundDrag;
+    public float moveSpeed = 7f; //initial movement speed of the player
+    public float sprintSpeed =5.0f; //sprint speed of the player
+    public float currentSpeed;//current speed of the player
+    public float groundDrag;// ground drag
 
-    private bool isSprinting = false;
+    private bool isSprinting = false;// checks if sprinting or not
     
 
     [Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
-    public KeyCode sprintKey = KeyCode.LeftShift;
+    public KeyCode jumpKey = KeyCode.Space; // space button
+    public KeyCode sprintKey = KeyCode.LeftShift; // left shift button
 
     [Header("Ground Check")]
-    public LayerMask ground;
-    public Transform groundCheck;
-    public float groundCheckDistance;
+    public LayerMask ground; // ground 
+    public Transform groundCheck; // checking the ground
+    public float groundCheckDistance; // distance of ground check
     bool isGrounded;
     
     [Header("Jumping and Double jumping")]
-    public float jumpForce = 5f;
-    public int jumpCount;
-    public int maxJumps = 2;
+    public float jumpForce = 5f; //how much power in jump
+    public int jumpCount; // counts jumps
+    public int maxJumps = 2; // maximum jumps
 
     [Header("Crouching")]
-    public KeyCode crouchKey = KeyCode.LeftControl;
+    public KeyCode crouchKey = KeyCode.LeftControl; //left control
 
-    public float crouchSpeed = 2f;
+    public float crouchSpeed = 2f; //crouching speed
     [Header("Pausing game")]
-    public bool isPaused = false;
-    public GameObject pauseMenu;
-    public GameObject crosshair;
+    public bool isPaused = false;// variable for if the game is paused
+    public GameObject pauseMenu; // object pause menu
+    public GameObject crosshair; // objec crosshair
 
-    private bool isCrouching = false;
+    private bool isCrouching = false; //variable for if the person is crouching
 
-    public Transform orientation;
+    public Transform orientation; //orientation of player
 
     [Header("Inputs")]
-    float horizontalInput;
-    float verticalInput;
+    float horizontalInput; // horizontal input
+    float verticalInput; // vertical input
 
-    Vector3 moveDirection;
+    Vector3 moveDirection; //direction player will move
 
-    Rigidbody rb;
+    Rigidbody rb; //rigidbody
 
 
     // Start is called before the first frame update
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
-        rb.useGravity = false;
-        pauseMenu.SetActive(false);
+        rb = GetComponent<Rigidbody>(); //getting the rigidbody component
+        rb.freezeRotation = true; // freezing the rotation
+        rb.useGravity = false; 
+        pauseMenu.SetActive(false); //sets the pause menu as inactive 
     }
 
     // Update is called once per frame
     private void Update()
     {
         //ground check
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, ground);
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, ground);// checking if the player is on the ground using the distance between the sphere and the ground.
         
         if (isGrounded)//resetting jumpcount when grounded
         {
@@ -106,15 +106,15 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = 0;
 
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)) // pausing the game
         {
-            if (isPaused)
+            if (isPaused) 
             {
-                ResumeGame();
+                ResumeGame(); //if game is paused, resume game and close the pause menu
                 CloseMenu();
             }
             else{
-                PauseGame();
+                PauseGame(); // if game is not paused, pause the game and open the menu
                 OpenMenu();
                 
             }
@@ -123,15 +123,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer();
-        Vector3 gravity = new Vector3(0, gravityStrength, 0);
-        rb.AddForce(gravity, ForceMode.Force);
+        MovePlayer(); //calls the funcion that moves the player
+        Vector3 gravity = new Vector3(0, gravityStrength, 0); // sets the gravity variable to 
+        rb.AddForce(gravity, ForceMode.Force); //adds gravity to the player
     }
 
     private void MyInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        horizontalInput = Input.GetAxisRaw("Horizontal"); //gets horizontal component 
+        verticalInput = Input.GetAxisRaw("Vertical"); //gets vertical component
     }
 
 
@@ -143,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
         //float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;  //checks if leftshift is pressed, compacted if statement, left side is if true right side is if false
         if (isCrouching)
         {
-            currentSpeed = moveSpeed;
+            currentSpeed = moveSpeed; 
         }else{
             currentSpeed = isSprinting ? sprintSpeed : moveSpeed;
         }
@@ -154,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    private void SpeedControl() // making sure speed doesnt go past  
+    private void SpeedControl() // making sure speed doesnt go past a set amount   
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         
@@ -183,50 +183,50 @@ public class PlayerMovement : MonoBehaviour
 
     private void PauseGame()
     {
-        Time.timeScale = 0f;
-        isPaused = true;
+        Time.timeScale = 0f; // pauses the time in game
+        isPaused = true; // sets paused as true
     }    
     private void ResumeGame()
     {
-        Time.timeScale = 1f;
-        isPaused = false;
+        Time.timeScale = 1f; // unpauses the time in game
+        isPaused = false; // paused set to false
     }
 
     private void OpenMenu()
     {
-        Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        crosshair.SetActive(false);
-        pauseMenu.SetActive(true);
+        Time.timeScale = 0f; // freezes the time in game
+        Cursor.lockState = CursorLockMode.None; // unlocks the cursor so users can use it
+        Cursor.visible = true; // users can see cursor
+        crosshair.SetActive(false); // crosshair object set to false
+        pauseMenu.SetActive(true); // pause menu is set to true, shows the pause menu.
         
     }
 
     private void CloseMenu()
     {
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        crosshair.SetActive(true);
-        pauseMenu.SetActive(false);
+        Time.timeScale = 1f; // resumes the time in the game
+        Cursor.lockState = CursorLockMode.Locked; // locks the cursor
+        Cursor.visible = false; // makes the cursor invisible
+        crosshair.SetActive(true); //sets the crosshair object as true
+        pauseMenu.SetActive(false); // sets the pause menu as false
     }
 
     public void ResumeButton()
     {
-        isPaused = false;
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        crosshair.SetActive(true);
+        isPaused = false; //sets isPause boolean to false
+        Time.timeScale = 1f; //unpauses the time
+        Cursor.lockState = CursorLockMode.Locked; //locks the cursor
+        Cursor.visible = false; // makes the cursor invisible
+        crosshair.SetActive(true); //sets the crosshair object to true, allows players to see crosshair
     }
 
     public void RestartGame()
     {
-        isPaused = false;
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        crosshair.SetActive(false);
-        SceneManager.LoadScene("Menu");
+        isPaused = false; //sets isPause boolean to false
+        Time.timeScale = 1f; //unpauses the time
+        Cursor.lockState = CursorLockMode.None; //unlocks the users cursor
+        Cursor.visible = true; // sets the cursor visibility to true, allows user to see cursor
+        crosshair.SetActive(false); //sets the object crosshair to false, 
+        SceneManager.LoadScene("Menu"); //loads the menu scene
     }
 }
