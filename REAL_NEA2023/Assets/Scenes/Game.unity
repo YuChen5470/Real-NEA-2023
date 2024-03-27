@@ -9514,7 +9514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityStrength: -9.18
   moveSpeed: 8
-  sprintSpeed: 100
+  sprintSpeed: 30
   currentSpeed: 0
   groundDrag: 5
   jumpKey: 32
@@ -9524,7 +9524,7 @@ MonoBehaviour:
     m_Bits: 8
   groundCheck: {fileID: 948337}
   groundCheckDistance: 0.1
-  jumpForce: 4
+  jumpForce: 8
   jumpCount: 0
   maxJumps: 2
   crouchKey: 306
@@ -9564,7 +9564,7 @@ MonoBehaviour:
   generalDefence: {fileID: 1169474421}
   health: 100
   score: 0
-  currency: 500
+  currency: 0
   Unlocked: 0
   Reg_timer: 0
   crosshair: {fileID: 1721734473}
@@ -10352,7 +10352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9170378408448441806, guid: 198953c5a81bd1d4bae35f979abc1f5c, type: 3}
       propertyPath: health
-      value: 1000
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 9170378408448441806, guid: 198953c5a81bd1d4bae35f979abc1f5c, type: 3}
       propertyPath: player

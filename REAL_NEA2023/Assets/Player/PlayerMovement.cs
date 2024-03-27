@@ -67,7 +67,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         //ground check
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, ground);// checking if the player is on the ground using the distance between the sphere and the ground.
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, ground);
+        // checking if the player is on the ground using the distance between the sphere and the ground.
         
         if (isGrounded)//resetting jumpcount when grounded
         {
@@ -75,8 +76,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //jumping
-        if (Input.GetButtonDown("Jump") && (isGrounded || jumpCount < maxJumps - 1)) //checks if jump button is pressed, if yes and isGrounded = true and jump is less than maxJumps-1 then jumps
-       //then adds 1 to the jump count to allow double jumping
+        if (Input.GetButtonDown("Jump") && (isGrounded || jumpCount < maxJumps - 1)) 
+        //checks if jump button is pressed, if yes and isGrounded = true and jump is less than maxJumps-1 then jumps
+        //then adds 1 to the jump count to allow double jumping
         {
             rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse); // adding force
             jumpCount++; //+1 jump
@@ -84,26 +86,26 @@ public class PlayerMovement : MonoBehaviour
 
         //sprinting toggle
         if (Input.GetKeyDown(sprintKey)){
-            isSprinting = !isSprinting;
+            isSprinting = !isSprinting; // sets sprinting to the opposite of what it was
         }
 
         //crouching toggle
         if (Input.GetKeyDown(crouchKey))
         {
-        isCrouching = !isCrouching;
-        Crouch();
+        isCrouching = !isCrouching; // sets crouching to the opposite of what it was
+        Crouch(); // calls crouching function
         }
         
         //kasndkjadkjandkanskdsa
 
-        MyInput();
-        SpeedControl();
+        MyInput();  // calls myinput function
+        SpeedControl(); // calls speedcontrol function
 
         //drag
-        if (isGrounded)
-            rb.drag = groundDrag;
+        if (isGrounded) // checks if the player is on the ground
+            rb.drag = groundDrag; // adds drag to player
         else
-            rb.drag = 0;
+            rb.drag = 0; // drag is zero if in air
 
 
         if (Input.GetKeyDown(KeyCode.Escape)) // pausing the game
@@ -140,36 +142,41 @@ public class PlayerMovement : MonoBehaviour
 
         // calc movement direction
     
-        //float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;  //checks if leftshift is pressed, compacted if statement, left side is if true right side is if false
+        //float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;  
+        //checks if leftshift is pressed, compacted if statement, left side is if true right side is if false
         if (isCrouching)
         {
-            currentSpeed = moveSpeed; 
+            currentSpeed = moveSpeed; // sets current speed to move speed
         }else{
-            currentSpeed = isSprinting ? sprintSpeed : moveSpeed;
+            currentSpeed = isSprinting ? sprintSpeed : moveSpeed; // if statement
         }
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; 
+        //calculates where the player is moving
 
-        rb.AddForce(moveDirection.normalized * currentSpeed * 10f, ForceMode.Force);
+        rb.AddForce(moveDirection.normalized * currentSpeed * 10f, ForceMode.Force); 
+        //adds the force for the player to move in
     }
 
 
 
     private void SpeedControl() // making sure speed doesnt go past a set amount   
     {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z); 
         
-        if(flatVel.magnitude > moveSpeed)
+        if(flatVel.magnitude > moveSpeed) 
         {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            Vector3 limitedVel = flatVel.normalized * moveSpeed; 
+            //calculates the limited velocity the player can move at
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z); 
+            // sets the velocity of the player to the maximum possible when they surpass the limit
         }
     }
 
     private void Crouch()
     {
     
-    moveSpeed = 7; 
-    if (isCrouching)
+    moveSpeed = 7;  //sets movement speed to 7
+    if (isCrouching) //checks if crouching
     {
         transform.localScale = 0.5f *Vector3.up +  Vector3.right + Vector3.forward; //iteration 2
         moveSpeed = crouchSpeed; // sets speed to crouchspeed

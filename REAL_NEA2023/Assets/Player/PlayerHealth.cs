@@ -26,7 +26,8 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        Unlocked = generalDefence.isUnlocked; // references the general defence script's variable called isunlocked, sets it as a variable in this script
+        Unlocked = generalDefence.isUnlocked; 
+        // references the general defence script's variable called isunlocked, sets it as a variable in this script
         if (Unlocked)
         {
             PassiveHealthReg(); // if the user has unlocked passive healing, function will repeatedly run
@@ -35,7 +36,8 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage; //taking damage from enemy
-        if (health <= 0) //if health reaches below or 0, sends user back to main menu and unlocks their cursor to potentially play again
+        if (health <= 0) 
+        //if health reaches below or 0, sends user back to main menu and unlocks their cursor to potentially play again
         {
             Cursor.lockState = CursorLockMode.None; // cursor is unlocked
             Cursor.visible = true; // cursor is set visible
